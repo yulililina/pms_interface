@@ -8,6 +8,7 @@
 """
 import os,logging,pymysql
 from public import config
+from common import deflogger
 
 HOST = config.host_test
 PORT = config.port_test
@@ -34,6 +35,28 @@ class OperationDbInterface(object):
                 # 创建数据库链接,返回字典
                 self.conn = pymysql.connect(host=host_db,user=user_db,passwd=passwd_db,db=name_db,
                                             port=port_db,charset='utf8',cursorclass=pymysql.cursors.DictCursor)
+            else:
+                # 创建数据库连接，返回元祖
+                self.conn = pymysql.connect(host=host_db,user=user_db,passwd=passwd_db,db=name_db,
+                                            port=port_db,charset='utf8')
+            self.cur = self.conn.cursor()
+        except pymysql.Error as error:
+            print("创建数据库连接失败|Mysql Error %d:%s" % (error.args[0],error.args[1]))
+            logger = deflogger.logger_test()
+            logger.exception(error)
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    test = OperationDbInterface() # 初始化数据库连接
+
+
+
+
 
 
 

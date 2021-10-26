@@ -16,7 +16,7 @@ s_host = '192.168.161.62'
 s_port = 9100
 
 # 数据库地址信息
-host_test = '192.168.161.18'
+host_test = '192.168.162.18'
 user_test = 'db_admin'
 password_test = 'light2902'
 name_test = 'lingxiao_pms'

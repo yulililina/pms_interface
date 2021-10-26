@@ -4,68 +4,75 @@
 
 """自定义封装logger"""
 
-import logging,sys
+import logging, sys
 from public import config
 
-# 获取longger 实例
-logger = logging.getLogger("interface_test")
-
-# 指定log输出日志
-format_log = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
-
-# 输出文件日志
-file_handler = logging.FileHandler(config.src_path+'/log/interface_test.log')
-file_handler.setFormatter(format_log)
-
-# 控制台日志
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setFormatter(format_log)
-
-# 为logger添加具体的日志处理器
-
-logger.addHandler(file_handler)
-logger.addHandler(console_handler)
-
-logger.setLevel(logging.DEBUG)
-
-
-
-
-
-
-
-
-
-
-
-# from logging import handlers
+# 日志封装为类
+# class Deflogger(object):
 #
-# class Logger(object):
-#     level_relations = {
-#         'debug':logging.DEBUG,
-#         'info':logging.INFO,
-#         'warning':logging.WARNING,
-#         'error':logging.ERROR,
-#         'crit':logging.CRITICAL
-#     }#日志级别关系映射
+#     def __init__(self):
+#         # 获取 Deflogger 实例
+#         logger = logging.getLogger("")
 #
-#     def __init__(self,filename,level='info',when='D',backCount=3,fmt='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
-#         self.logger = logging.getLogger(filename)
-#         format_str = logging.Formatter(fmt)#设置日志格式
-#         self.logger.setLevel(self.level_relations.get(level))#设置日志级别
-#         sh = logging.StreamHandler()#往屏幕上输出
-#         sh.setFormatter(format_str) #设置屏幕上显示的格式
-#         th = handlers.TimedRotatingFileHandler(filename=filename,when=when,backupCount=backCount,encoding='utf-8')#往文件里写入#指定间隔时间自动生成文件的处理器
-#         #实例化TimedRotatingFileHandler
-#         #interval是时间间隔，backupCount是备份文件的个数，如果超过这个个数，就会自动删除，when是间隔的时间单位，单位有以下几种：
-#         # S 秒
-#         # M 分
-#         # H 小时、
-#         # D 天、
-#         # W 每星期（interval==0时代表星期一）
-#         # midnight 每天凌晨
-#         th.setFormatter(format_str)#设置文件里写入的格式
-#         self.logger.addHandler(sh) #把对象加到logger里
-#         self.logger.addHandler(th)
+#         # 指定log输出日志
+#         format_log = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+#
+#         # 输出文件日志
+#         file_handler = logging.FileHandler(config.src_path + '/log/interface_test.log')
+#         file_handler.setFormatter(format_log)
+#
+#         # 控制台日志
+#         console_handler = logging.StreamHandler(sys.stdout)
+#         console_handler.setFormatter(format_log)
+#
+#         # 为logger添加具体的日志处理器
+#
+#         logger.addHandler(file_handler)
+#         logger.addHandler(console_handler)
+#
+#         logger.setLevel(logging.DEBUG)
+#         self.logger = logger
+#
+#
+# if __name__ == '__main__':
+#     test = Deflogger()
+#     logger = test.logger
+#     logger.info("u209fiojijfi")
+
+# 日志封装为方法
+def logger_test():
+    # 获取 logger 实例
+    logger = logging.getLogger("")
+
+    # 指定log输出日志
+    format_log = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+
+    # 输出文件日志
+    file_handler = logging.FileHandler(config.src_path + '/log/interface_test.log')
+    file_handler.setFormatter(format_log)
+
+    # 控制台日志
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(format_log)
+
+    # 为logger添加具体的日志处理器
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
+    logger.setLevel(logging.DEBUG)
+    return logger
+
+
+if __name__ == '__main__':
+    logger = logger_test()
+    logger.info("这是一个错误日志")
+
+
+
+
+
+
+
 
 
